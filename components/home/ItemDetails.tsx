@@ -21,8 +21,17 @@ export const ItemDetails = (props: Props) => {
 
   const dispatch = useAppDispatch();
 
+  const onSave = () => {
+    if (props.mode === "add") {
+      dispatch(addItem({ ...item, quantity: item.quantity ?? 1 }));
+    } else {
+      dispatch(editItem(item));
+    }
+    props.onClose();
+  };
+
   return (
-    <div className="bg-gray-40 flex-1 flex flex-col max-w-7xl w-full mx-auto">
+    <div className="bg-gray-40 flex-1 flex flex-col max-w-7xl w-full mx-auto relative">
       <div className="pl-6 bg-white pb-6 rounded-b-[48px] flex-1">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
           <div className="flex-1 flex items-center justify-center pr-4 sm:pr-6">
@@ -85,7 +94,7 @@ export const ItemDetails = (props: Props) => {
           </div>
         )}
       </div>
-      <div className="p-6 flex items-end justify-between">
+      <div className="p-6 flex items-end justify-between absolute bottom-0 left-0 right-0">
         <div>
           <span>Price</span>
           <span className="flex gap-1 items-center text-4xl">
@@ -95,16 +104,9 @@ export const ItemDetails = (props: Props) => {
         </div>
         <button
           className="py-4 px-6 rounded-full bg-primary text-white text-lg"
-          onClick={() => {
-            if (props.mode === "add") {
-              dispatch(addItem({ ...item, quantity: item.quantity ?? 1 }));
-            } else {
-              dispatch(editItem(item));
-            }
-            props.onClose();
-          }}
+          onClick={onSave}
         >
-          Add to cart
+          {props.mode === "edit" ? "Update item" : "Add to Bucket"}
         </button>
       </div>
     </div>

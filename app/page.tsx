@@ -64,7 +64,7 @@ export default function Home() {
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-black/40" />
           <Drawer.Content className="bg-white flex flex-col h-[99%] mt-24 fixed bottom-0 left-0 right-0 z-[51]">
-            <div className="p-4 sm:p-6 relative bg-gray-40 h-full flex flex-col">
+            <div className="p-4 sm:p-6 relative bg-gray-40 h-full flex flex-col overflow-auto">
               <div className="flex items-center justify-center p-4 sm:pb-6">
                 <Drawer.Close asChild className="absolute left-6">
                   <button className="hover:bg-gray-200 rounded-full transition-colors">

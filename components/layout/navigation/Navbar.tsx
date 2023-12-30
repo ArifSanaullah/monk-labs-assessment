@@ -3,7 +3,6 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
-  BellIcon,
   ChartBarIcon,
   HeartIcon,
   HomeIcon,
@@ -24,7 +23,7 @@ export default function Navbar() {
       as="nav"
       className="bg-gray-40 block sticky top-0 bg-opacity-60 backdrop-filter backdrop-blur-lg border-b border-gray-200 !z-50"
     >
-      {({ open }) => (
+      {({ open, close }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 justify-between">
@@ -178,15 +177,15 @@ export default function Navbar() {
             <div className="space-y-1 pb-4 pt-2">
               {/* Current: "bg-indigo-50 border-indigo-500 text-primary", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
               <Disclosure.Button
-                as="div"
+                as={Link}
                 className={classNames(
                   pathname === "/"
                     ? "block border-l-4 border-primary bg-primary/5 py-2 pl-3 pr-4 text-base font-medium text-primary"
                     : "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 )}
+                href="/"
               >
-                <Link
-                  href="/"
+                <span
                   className={classNames(
                     "text-base flex items-center gap-2",
                     pathname === "/"
@@ -196,18 +195,18 @@ export default function Navbar() {
                 >
                   <HomeIcon className="w-5 h-5" />
                   <span>Home</span>
-                </Link>
+                </span>
               </Disclosure.Button>
               <Disclosure.Button
-                as="div"
+                as={Link}
                 className={classNames(
                   pathname === "/favourites"
                     ? "block border-l-4 border-primary bg-primary/5 py-2 pl-3 pr-4 text-base font-medium text-primary"
                     : "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 )}
+                href="/favourites"
               >
-                <Link
-                  href="/favourites"
+                <span
                   className={classNames(
                     "text-base flex items-center gap-2",
                     pathname === "/favourites"
@@ -217,18 +216,18 @@ export default function Navbar() {
                 >
                   <HeartIcon className="w-5 h-5" />
                   <span>Favourites</span>
-                </Link>
+                </span>
               </Disclosure.Button>
               <Disclosure.Button
-                as="div"
+                as={Link}
                 className={classNames(
                   pathname === "/bucket"
                     ? "block border-l-4 border-primary bg-primary/5 py-2 pl-3 pr-4 text-base font-medium text-primary"
                     : "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 )}
+                href="/bucket"
               >
-                <Link
-                  href="/bucket"
+                <span
                   className={classNames(
                     "text-base flex items-center gap-2",
                     pathname === "/bucket"
@@ -238,18 +237,18 @@ export default function Navbar() {
                 >
                   <ShoppingBagIcon className="w-5 h-5" />
                   <span>My Bucket</span>
-                </Link>
+                </span>
               </Disclosure.Button>
               <Disclosure.Button
-                as="div"
+                as={Link}
                 className={classNames(
                   pathname === "/insights"
                     ? "block border-l-4 border-primary bg-primary/5 py-2 pl-3 pr-4 text-base font-medium text-primary"
                     : "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 )}
+                href="/insights"
               >
-                <Link
-                  href="/insights"
+                <span
                   className={classNames(
                     "text-base flex items-center gap-2",
                     pathname === "/insights"
@@ -259,7 +258,7 @@ export default function Navbar() {
                 >
                   <ChartBarIcon className="w-5 h-5" />
                   <span>Insights</span>
-                </Link>
+                </span>
               </Disclosure.Button>
             </div>
           </Disclosure.Panel>
