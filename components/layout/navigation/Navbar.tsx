@@ -22,7 +22,7 @@ export default function Navbar() {
   return (
     <Disclosure
       as="nav"
-      className="bg-gray-40 block sticky top-0 bg-opacity-60 backdrop-filter backdrop-blur-lg border-b border-gray-200 z-10"
+      className="bg-gray-40 block sticky top-0 bg-opacity-60 backdrop-filter backdrop-blur-lg border-b border-gray-200 !z-50"
     >
       {({ open }) => (
         <>
@@ -80,16 +80,16 @@ export default function Navbar() {
                     <span>Favourites</span>
                   </Link>
                   <Link
-                    href="/cart"
+                    href="/bucket"
                     className={classNames(
                       "text-base flex items-center gap-2",
-                      pathname === "/cart"
+                      pathname === "/bucket"
                         ? "text-primary hover:text-primary"
                         : "text-gray-700 hover:text-gray-900"
                     )}
                   >
                     <ShoppingBagIcon className="w-5 h-5" />
-                    <span>Cart</span>
+                    <span>My Bucket</span>
                   </Link>
                   <Link
                     href="/insights"
@@ -222,22 +222,22 @@ export default function Navbar() {
               <Disclosure.Button
                 as="div"
                 className={classNames(
-                  pathname === "/cart"
+                  pathname === "/bucket"
                     ? "block border-l-4 border-primary bg-primary/5 py-2 pl-3 pr-4 text-base font-medium text-primary"
                     : "block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700"
                 )}
               >
                 <Link
-                  href="/cart"
+                  href="/bucket"
                   className={classNames(
                     "text-base flex items-center gap-2",
-                    pathname === "/cart"
+                    pathname === "/bucket"
                       ? "text-primary hover:text-primary"
                       : "text-gray-700 hover:text-gray-900"
                   )}
                 >
                   <ShoppingBagIcon className="w-5 h-5" />
-                  <span>Cart</span>
+                  <span>My Bucket</span>
                 </Link>
               </Disclosure.Button>
               <Disclosure.Button

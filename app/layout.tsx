@@ -3,6 +3,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navigation/Navbar";
 import Head from "next/head";
+import classNames from "classnames";
+import { RTKProvider } from "@/lib/Providers/RTKProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,7 +18,11 @@ export const metadata: Metadata = {
   description: "Elevate your taste, order with haste!",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <Head>
@@ -39,9 +45,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <body className={poppins.className}>
-        <Navbar />
-        <main className="min-h-[calc(100vh_-_64px)]">{children}</main>
+      <body className={classNames(poppins.className)}>
+        <RTKProvider>
+          <Navbar />
+          <main className="flex flex-col">{children}</main>
+        </RTKProvider>
       </body>
     </html>
   );

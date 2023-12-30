@@ -7,12 +7,14 @@ import Image from "next/image";
 import { labelOrDefault } from "@/lib/labelOrDefault";
 import { useState } from "react";
 import classNames from "classnames";
+import { ArrowLeftIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { Drawer } from "vaul";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(categories[0].id);
 
   return (
-    <div className="p-4 sm:p-6 bg-gray-40">
+    <div className="py-4 h-full px-4 sm:px-6 lg:px-8 bg-gray-40 flex-1">
       <div className="flex flex-col mx-auto max-w-7xl">
         <div className="px-6 pb-4">
           <div className="flex items-center gap-2 sm:gap-4">
@@ -51,6 +53,25 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <Drawer.Root snapPoints={[1]}>
+        <Drawer.Trigger>
+          <div className="p-4 rounded-full bg-primary/80 hover:bg-primary text-white fixed bottom-6 right-6">
+            <ShoppingBagIcon className="w-6 h-6" />
+          </div>
+        </Drawer.Trigger>
+        <Drawer.Portal>
+          <Drawer.Overlay className="fixed inset-0 bg-black/40" />
+          <Drawer.Content className="bg-white flex flex-col h-[99%] mt-24 fixed bottom-0 left-0 right-0 z-[51]">
+            <div className="p-2 flex items-center justify-between">
+              <Drawer.Close asChild>
+                <button className="p-3 hover:bg-gray-200 rounded-full transition-colors">
+                  <ArrowLeftIcon className="w-6 h-6" />
+                </button>
+              </Drawer.Close>
+            </div>
+          </Drawer.Content>
+        </Drawer.Portal>
+      </Drawer.Root>
     </div>
   );
 }
