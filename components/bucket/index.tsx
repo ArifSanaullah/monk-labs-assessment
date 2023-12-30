@@ -91,12 +91,20 @@ export const Bucket = ({ onClickAddItem }: { onClickAddItem(): void }) => {
             <span className="text-primary">$</span>
           </span>
         </div>
-        <button
-          className="bg-primary px-6 py-4 rounded-full text-white"
-          onClick={() => setIsCheckoutOpen(true)}
-        >
-          Checkout
-        </button>
+        <div className="flex items-center flex-col sm:flex-row gap-4">
+          <button
+            className="text-primary border border-primary px-6 py-4 rounded-full flex-1 whitespace-nowrap"
+            onClick={onClickAddItem}
+          >
+            Add Items
+          </button>
+          <button
+            className="bg-primary px-6 py-4 rounded-full text-white flex-1"
+            onClick={() => setIsCheckoutOpen(true)}
+          >
+            Checkout
+          </button>
+        </div>
       </div>
       <Drawer.NestedRoot open={isCheckoutOpen} onOpenChange={setIsCheckoutOpen}>
         <Drawer.Portal>

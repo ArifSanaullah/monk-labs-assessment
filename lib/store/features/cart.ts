@@ -6,10 +6,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CartState {
   items: MenuItem[];
+  favourites: string[];
 }
 
 const initialState: CartState = {
   items: [],
+  favourites: [],
 };
 
 export const cartState = createSlice({
@@ -41,10 +43,25 @@ export const cartState = createSlice({
     clearCart: (state) => {
       state.items = [];
     },
+    addFavourite: (state, action: PayloadAction<string>) => {
+      const fvts = current(state.favourites);
+      state.favourites = fvts.concat(action.payload);
+    },
+    removeFavourite: (state, action: PayloadAction<string>) => {
+      const fvts = current(state.favourites);
+      state.favourites = fvts.filter((id) => id !== action.payload);
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addItem, removeItem, editItem, clearCart } = cartState.actions;
+export const {
+  addItem,
+  removeItem,
+  editItem,
+  clearCart,
+  addFavourite,
+  removeFavourite,
+} = cartState.actions;
 
 export default cartState.reducer;

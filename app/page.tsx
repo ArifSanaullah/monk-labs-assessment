@@ -13,12 +13,12 @@ import { Bucket } from "@/components/bucket";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(categories[0].id);
+  const [activeTab, setActiveTab] = useState("all");
 
   return (
     <div className="py-4 h-full px-4 sm:px-6 lg:px-8 bg-gray-40 flex-1">
       <div className="flex flex-col mx-auto max-w-7xl">
-        <div className="px-6 pb-4">
+        <div className="pb-4">
           <div className="flex items-center gap-2 sm:gap-4">
             <h1 className="text-xl font-bold">Hey, Danyal</h1>
             <Image src={hand} alt="Waving emoji" width={32} height={32} />
@@ -26,6 +26,23 @@ export default function Home() {
           <p className="text-gray-500 text-sm">It&lsquo;s dinner time</p>
         </div>
         <div className="mb-4 sm:mb-6 flex flex-nowrap overflow-x-auto gap-4">
+          <div
+            className={classNames(
+              "p-4 rounded-lg relative flex items-center gap-4 pr-20 overflow-hidden min-w-52",
+              activeTab === "all" ? "bg-primary text-white" : "bg-primary/5"
+            )}
+            role="button"
+            onClick={() => setActiveTab("all")}
+          >
+            <p className="whitespace-nowrap">All Items</p>
+            <Image
+              src={`https://source.unsplash.com/70x70?sig=all items`}
+              alt="all"
+              width={70}
+              height={70}
+              className="rounded-full absolute -right-2 top-2"
+            />
+          </div>
           {categories.map((cat) => (
             <div
               key={cat.id}

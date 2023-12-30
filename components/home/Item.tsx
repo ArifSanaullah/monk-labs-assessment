@@ -3,13 +3,28 @@ import { labelOrDefault } from "@/lib/labelOrDefault";
 import { MenuItem } from "@/types";
 import { ArrowLeftIcon, HeartIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import { Drawer } from "vaul";
 import { ItemDetails } from "./ItemDetails";
+import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
+import { addFavourite, removeFavourite } from "@/lib/store/features/cart";
+import classNames from "classnames";
 
 export const Item = ({ item }: { item: MenuItem }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+
+  const { favourites = [] } = useAppSelector((state) => state.cart);
+
+  const isFavourite = favourites.includes(item.id);
+
+  const dispatch = useAppDispatch();
+
+  const handleFavourite: MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch(isFavourite ? removeFavourite(item.id) : addFavourite(item.id));
+  };
 
   return (
     <>
@@ -23,8 +38,16 @@ export const Item = ({ item }: { item: MenuItem }) => {
                   <ArrowLeftIcon className="w-6 h-6" />
                 </button>
               </Drawer.Close>
-              <button className="p-3 hover:bg-gray-200 rounded-full transition-colors">
-                <HeartIcon className="w-6 h-6" />
+              <button
+                className="p-3 hover:bg-gray-200 rounded-full transition-colors"
+                onClick={handleFavourite}
+              >
+                <HeartIcon
+                  className={classNames(
+                    "w-6 h-6",
+                    isFavourite ? "fill-primary text-primary" : ""
+                  )}
+                />
               </button>
             </div>
             {selectedItem && (
@@ -38,7 +61,7 @@ export const Item = ({ item }: { item: MenuItem }) => {
         </Drawer.Portal>
       </Drawer.Root>
       <div
-        className="flex relative flex-col shadow-md rounded-lg col-span-6 sm:col-span-3 md:col-span-2 bg-white"
+        className="flex relative flex-col shadow-md rounded-lg col-span-6 sm:col-span-3 md:col-span-2 bg-white cursor-pointer"
         role="list-item"
         onClick={() => {
           setSelectedItem(item);
@@ -75,8 +98,13 @@ export const Item = ({ item }: { item: MenuItem }) => {
                     <span className="text-primary">$</span>
                     <span>{item.price}</span>
                   </div>
-                  <button>
-                    <HeartIcon className="w-4 h-4 text-black" />
+                  <button onClick={handleFavourite}>
+                    <HeartIcon
+                      className={classNames(
+                        "w-4 h-4 text-black",
+                        isFavourite ? "fill-primary text-primary" : ""
+                      )}
+                    />
                   </button>
                 </div>
               </div>
