@@ -9,6 +9,7 @@ import { useState } from "react";
 import classNames from "classnames";
 import { ArrowLeftIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { Drawer } from "vaul";
+import { Bucket } from "@/components/bucket";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(categories[0].id);
@@ -68,6 +69,7 @@ export default function Home() {
                   <ArrowLeftIcon className="w-6 h-6" />
                 </button>
               </Drawer.Close>
+              <Bucket />
             </div>
           </Drawer.Content>
         </Drawer.Portal>

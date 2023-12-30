@@ -19,6 +19,7 @@ export interface MenuItem {
   discounts?: Partial<Discount>[];
   isHidden?: boolean;
   taxable?: boolean;
+  quantity?: number;
 }
 
 export interface Option {

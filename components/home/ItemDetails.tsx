@@ -8,9 +8,11 @@ import {
   StarIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
-export const ItemDetails = ({ item }: { item: MenuItem }) => {
+export const ItemDetails = (props: { item: MenuItem; onClose(): void }) => {
+  const [item, setItem] = useState(props.item);
+
   const dispatch = useAppDispatch();
 
   return (
@@ -42,11 +44,26 @@ export const ItemDetails = ({ item }: { item: MenuItem }) => {
             </div>
             <div className="flex-1 flex items-center sm:items-end justify-end sm:justify-center">
               <div className="flex items-center gap-4 p-4 sm:p-6">
-                <button className="hover:bg-primary/5">
+                <button
+                  onClick={() =>
+                    setItem({
+                      ...item,
+                      quantity: item.quantity ? item.quantity + 1 : 1,
+                    })
+                  }
+                >
                   <PlusCircleIcon className="w-9 sm:w-12 h-9 sm:h-12 text-primary" />
                 </button>
-                <span className="text-xl">1</span>
-                <button>
+                <span className="text-xl">{item.quantity ?? 1}</span>
+                <button
+                  disabled={!!(item.quantity && item.quantity <= 1)}
+                  onClick={() =>
+                    setItem({
+                      ...item,
+                      quantity: item.quantity ? item.quantity - 1 : 1,
+                    })
+                  }
+                >
                   <MinusCircleIcon className="w-9 sm:w-12 h-9 sm:h-12 text-primary" />
                 </button>
               </div>
@@ -72,7 +89,10 @@ export const ItemDetails = ({ item }: { item: MenuItem }) => {
         </div>
         <button
           className="py-4 px-6 rounded-full bg-primary text-white text-lg"
-          onClick={() => dispatch(addItem(item))}
+          onClick={() => {
+            dispatch(addItem({ ...item, quantity: item.quantity ?? 1 }));
+            props.onClose();
+          }}
         >
           Add to cart
         </button>

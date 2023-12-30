@@ -1,7 +1,7 @@
 "use client";
 
 import { MenuItem } from "@/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CartState {
@@ -17,7 +17,18 @@ export const cartState = createSlice({
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<MenuItem>) => {
-      state.items = state.items.concat(action.payload);
+      const items = current(state.items);
+      let item = items.find((i) => i.id === action.payload.id);
+      if (item) {
+        const idx = items.findIndex((i) => i.id === action.payload.id);
+
+        state.items = state.items.toSpliced(idx, 1, {
+          ...item,
+          quantity: item.quantity! + action.payload.quantity!,
+        });
+      } else {
+        state.items = state.items.concat(action.payload);
+      }
     },
     removeItem: (state, action: PayloadAction<MenuItem>) => {
       state.items = state.items.filter((item) => item.id !== action.payload.id);

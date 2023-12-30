@@ -27,7 +27,12 @@ export const Item = ({ item }: { item: MenuItem }) => {
                 <HeartIcon className="w-6 h-6" />
               </button>
             </div>
-            {selectedItem && <ItemDetails item={selectedItem} />}
+            {selectedItem && (
+              <ItemDetails
+                item={selectedItem}
+                onClose={() => setIsOpen(false)}
+              />
+            )}
           </Drawer.Content>
         </Drawer.Portal>
       </Drawer.Root>
