@@ -29,6 +29,7 @@ export const Item = ({ item }: { item: MenuItem }) => {
             </div>
             {selectedItem && (
               <ItemDetails
+                mode="add"
                 item={selectedItem}
                 onClose={() => setIsOpen(false)}
               />

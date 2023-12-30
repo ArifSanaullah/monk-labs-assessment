@@ -1,5 +1,5 @@
 import { labelOrDefault } from "@/lib/labelOrDefault";
-import { addItem } from "@/lib/store/features/cart";
+import { addItem, editItem } from "@/lib/store/features/cart";
 import { useAppDispatch } from "@/lib/store/hooks";
 import { MenuItem } from "@/types";
 import {
@@ -10,7 +10,13 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 
-export const ItemDetails = (props: { item: MenuItem; onClose(): void }) => {
+interface Props {
+  item: MenuItem;
+  onClose(): void;
+  mode?: "add" | "edit";
+}
+
+export const ItemDetails = (props: Props) => {
   const [item, setItem] = useState(props.item);
 
   const dispatch = useAppDispatch();
@@ -90,7 +96,11 @@ export const ItemDetails = (props: { item: MenuItem; onClose(): void }) => {
         <button
           className="py-4 px-6 rounded-full bg-primary text-white text-lg"
           onClick={() => {
-            dispatch(addItem({ ...item, quantity: item.quantity ?? 1 }));
+            if (props.mode === "add") {
+              dispatch(addItem({ ...item, quantity: item.quantity ?? 1 }));
+            } else {
+              dispatch(editItem(item));
+            }
             props.onClose();
           }}
         >

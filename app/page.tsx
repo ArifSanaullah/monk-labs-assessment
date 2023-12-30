@@ -12,6 +12,7 @@ import { Drawer } from "vaul";
 import { Bucket } from "@/components/bucket";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(categories[0].id);
 
   return (
@@ -54,8 +55,8 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <Drawer.Root snapPoints={[1]}>
-        <Drawer.Trigger>
+      <Drawer.Root snapPoints={[1]} open={isOpen} onOpenChange={setIsOpen}>
+        <Drawer.Trigger onClick={() => setIsOpen(true)}>
           <div className="p-4 rounded-full bg-primary/80 hover:bg-primary text-white fixed bottom-6 right-6">
             <ShoppingBagIcon className="w-6 h-6" />
           </div>
@@ -63,13 +64,16 @@ export default function Home() {
         <Drawer.Portal>
           <Drawer.Overlay className="fixed inset-0 bg-black/40" />
           <Drawer.Content className="bg-white flex flex-col h-[99%] mt-24 fixed bottom-0 left-0 right-0 z-[51]">
-            <div className="p-2 flex items-center justify-between">
-              <Drawer.Close asChild>
-                <button className="p-3 hover:bg-gray-200 rounded-full transition-colors">
-                  <ArrowLeftIcon className="w-6 h-6" />
-                </button>
-              </Drawer.Close>
-              <Bucket />
+            <div className="p-4 sm:p-6 relative bg-gray-40 h-full flex flex-col">
+              <div className="flex items-center justify-center p-4 sm:pb-6">
+                <Drawer.Close asChild className="absolute left-6">
+                  <button className="hover:bg-gray-200 rounded-full transition-colors">
+                    <ArrowLeftIcon className="w-6 h-6" />
+                  </button>
+                </Drawer.Close>
+                <h2 className="text-xl font-semibold">My Bucket</h2>
+              </div>
+              <Bucket onClickAddItem={() => setIsOpen(false)} />
             </div>
           </Drawer.Content>
         </Drawer.Portal>

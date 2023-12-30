@@ -45,7 +45,7 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <body className={classNames(poppins.className)}>
+      <body className={classNames(poppins.className, "bg-gray-40")}>
         <RTKProvider>
           <Navbar />
           <main className="flex flex-col">{children}</main>
