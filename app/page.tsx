@@ -15,9 +15,13 @@ import {
 import { Drawer } from "vaul";
 import { Bucket } from "@/components/bucket";
 import emptyCart from "@/assets/images/emptyCart.jpg";
+import { AllCategoriesDrawer } from "@/components/home/AllCategoriesDrawer";
+import { ItemsFiltersDrawer } from "@/components/home/ItemsFiltersDrawer";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showCategoriesDrawer, setShowCategoriesDrawer] = useState(false);
+  const [showFiltersDrawer, setShowFilterDrawer] = useState(false);
   const [activeTab, setActiveTab] = useState("all");
 
   const [query, setQuery] = useState("");
@@ -64,6 +68,12 @@ export default function Home() {
             </button>
           </div>
         </div>
+        <button
+          onClick={() => setShowCategoriesDrawer(true)}
+          className="self-end text-primary"
+        >
+          See all
+        </button>
         <div className="mb-4 sm:mb-6 flex flex-nowrap overflow-x-auto gap-4">
           <div
             className={classNames(
@@ -106,11 +116,22 @@ export default function Home() {
           ))}
         </div>
         {filteredItems.length > 0 ? (
-          <div className="grid grid-cols-6 gap-4 sm:gap-6">
-            {filteredItems.map((item) => (
-              <Item key={item.id} item={item as MenuItem} />
-            ))}
-          </div>
+          <>
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg mb-4 font-semibold">Recommended Items</h3>
+              <button
+                className="text-primary"
+                onClick={() => setShowFilterDrawer(true)}
+              >
+                Filters
+              </button>
+            </div>
+            <div className="grid grid-cols-6 gap-4 sm:gap-6">
+              {filteredItems.map((item) => (
+                <Item key={item.id} item={item as MenuItem} />
+              ))}
+            </div>
+          </>
         ) : (
           <div className="flex items-center flex-1 justify-center">
             <div className="flex flex-col items-center justify-center gap-4">
@@ -138,7 +159,7 @@ export default function Home() {
             <div className="p-4 sm:p-6 relative bg-gray-40 h-full flex flex-col overflow-auto">
               <div className="flex items-center justify-center p-4 sm:pb-6">
                 <Drawer.Close asChild className="absolute left-6">
-                  <button className="hover:bg-gray-200 rounded-full transition-colors">
+                  <button className="hover:bg-gray-200 rounded-full transition-colors p-4">
                     <ArrowLeftIcon className="w-6 h-6" />
                   </button>
                 </Drawer.Close>
@@ -149,6 +170,14 @@ export default function Home() {
           </Drawer.Content>
         </Drawer.Portal>
       </Drawer.Root>
+      <AllCategoriesDrawer
+        isOpen={showCategoriesDrawer}
+        setIsOpen={setShowCategoriesDrawer}
+      />
+      <ItemsFiltersDrawer
+        isOpen={showFiltersDrawer}
+        setIsOpen={setShowFilterDrawer}
+      />
     </div>
   );
 }
