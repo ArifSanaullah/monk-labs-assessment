@@ -51,6 +51,9 @@ export const cartState = createSlice({
       const fvts = current(state.favourites);
       state.favourites = fvts.filter((id) => id !== action.payload);
     },
+    setFavourites: (state, action: PayloadAction<string[]>) => {
+      state.favourites = action.payload;
+    },
   },
 });
 
@@ -62,6 +65,7 @@ export const {
   clearCart,
   addFavourite,
   removeFavourite,
+  setFavourites,
 } = cartState.actions;
 
 export default cartState.reducer;

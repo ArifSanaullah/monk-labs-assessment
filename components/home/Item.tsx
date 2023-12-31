@@ -7,7 +7,7 @@ import React, { MouseEventHandler, useState } from "react";
 import { Drawer } from "vaul";
 import { ItemDetails } from "./ItemDetails";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-import { addFavourite, removeFavourite } from "@/lib/store/features/cart";
+import { setFavourites } from "@/lib/store/features/cart";
 import classNames from "classnames";
 
 export const Item = ({ item }: { item: MenuItem }) => {
@@ -23,7 +23,11 @@ export const Item = ({ item }: { item: MenuItem }) => {
   const handleFavourite: MouseEventHandler<HTMLButtonElement> = (e) => {
     e.stopPropagation();
     e.preventDefault();
-    dispatch(isFavourite ? removeFavourite(item.id) : addFavourite(item.id));
+
+    const fvts = isFavourite
+      ? favourites.filter((id) => id !== item.id)
+      : favourites.concat(item.id);
+    dispatch(setFavourites(fvts));
   };
 
   return (
