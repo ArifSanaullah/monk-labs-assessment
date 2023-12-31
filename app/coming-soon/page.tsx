@@ -6,19 +6,6 @@ import cart from "@/assets/images/logo.png";
 const ComingSoon = () => {
   return (
     <div className="h-screen bg-white flex relative">
-      <header className="p-8 absolute top-4 left-4">
-        <Link href="/">
-          <span className="sr-only">Fit Grocer</span>
-          <Image
-            width={0}
-            height={0}
-            sizes="100vh"
-            className="w-11 h-12"
-            src={cart}
-            alt=""
-          />
-        </Link>
-      </header>
       <main className="flex-1 flex items-center justify-center lg:justify-start p-12">
         <div className="max-w-lg">
           <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">

@@ -159,7 +159,7 @@ export default function Navbar() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
+                          <Link
                             href="/coming-soon"
                             className={classNames(
                               active ? "bg-gray-100" : "",
@@ -167,7 +167,7 @@ export default function Navbar() {
                             )}
                           >
                             Sign out
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>

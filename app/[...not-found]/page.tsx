@@ -7,7 +7,7 @@ const NotFound = () => {
   return (
     <div className="h-screen bg-white flex relative">
       <header className="p-8 absolute top-4 left-4">
-        <Link href="/">
+        <Link href="/home">
           <span className="sr-only">Fit Grocer</span>
           <Image
             width={0}
