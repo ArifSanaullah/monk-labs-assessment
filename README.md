@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Fit Grocer React App
+
+Welcome to Fit Grocer, a responsive React application for a food ordering platform.
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Introduction
+Fit Grocer is a food ordering app designed to provide a seamless experience for users to explore and order a variety of food items. This project is built using React and follows responsive design principles for optimal viewing across different devices.
+
+## Features
+- Responsive design for mobile, tablet, and desktop views.
+- Implementation of a creative desktop version based on the provided Figma design.
+- Categories and items designed for an engaging user experience.
+- Favorites, Orders, Insights, and Profile tabs for quick navigation.
+- Quick access cart buttton at the bottom right of the screen.
+- Redux Toolkit with redux-persist for state management and caching.
 
 ## Getting Started
+### Prerequisites
+Make sure you have the following tools installed:
+- Node.js: [Download Node.js](https://nodejs.org/)
 
-First, run the development server:
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ArifSanaullah/monk-labs-assessment
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2. Change the directory
+    ```bash
+    cd monk-labs-assessment
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Install node_modules
+    ```bash
+    npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+4. Start the NextJS server
+    ```bash
+    npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
+The project structure is organized to maintain a clean and scalable codebase. Here are the key directories:
+- `monk-labs-assessment/`: Contains the source code.
+  - `components`: Reusable React components.
+  - `pages`: Top-level components representing different pages.
+  - `app`: All the pages of the application along with the layout, basic styles, icons & site manifest etc.
+  - `assets`: Contains assets like images/logos etc.
+  - `lib`: Contains RTK provider, hooks and utility functions
+  - `public`: All the public assets that should be used in deployment
+  - `types`: Contains TypeScript types for the project
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Deployment
+The app is deployed on Vercel. Access it at [Vercel Deployment Link](https://arif-sanaullah-monke-labs.vercel.app/).
 
-## Deploy on Vercel
+## Contributing
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+This project is licensed under the [MIT License](LICENSE).
